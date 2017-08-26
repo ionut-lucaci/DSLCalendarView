@@ -64,8 +64,6 @@
         _dayViewHeight = dayViewHeight;
         _dayViewsDictionary = [[NSMutableDictionary alloc] init];
         _dayViewClass = dayViewClass;
-        
-        [self createDayViews];
     }
 
     return self;

@@ -49,6 +49,7 @@
 
 // Designated initialiser
 - (id)initWithMonth:(NSDateComponents*)month width:(CGFloat)width dayViewClass:(Class)dayViewClass dayViewHeight:(CGFloat)dayViewHeight;
+- (void)createDayViews;
 
 - (DSLCalendarDayView*)dayViewForDay:(NSDateComponents*)day;
 - (void)updateDaySelectionStatesForRange:(DSLCalendarRange*)range;
