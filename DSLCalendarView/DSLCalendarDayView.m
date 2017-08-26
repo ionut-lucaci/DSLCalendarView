@@ -168,7 +168,9 @@
 }
 
 - (void)drawDayNumber {
-    if (self.selectionState == DSLCalendarDayViewNotSelected) {
+    if (!self.hasAvailableEvents) {
+        [[UIColor lightGrayColor] set]
+    } else if (self.selectionState == DSLCalendarDayViewNotSelected) {
         [[UIColor colorWithWhite:66.0/255.0 alpha:1.0] set];
     }
     else {

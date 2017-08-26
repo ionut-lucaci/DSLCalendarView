@@ -59,5 +59,6 @@
 - (void)calendarView:(DSLCalendarView *)calendarView didChangeToVisibleMonth:(NSDateComponents*)month;
 - (DSLCalendarRange*)calendarView:(DSLCalendarView*)calendarView didDragToDay:(NSDateComponents*)day selectingRange:(DSLCalendarRange*)range;
 - (BOOL)calendarView:(DSLCalendarView *)calendarView shouldAnimateDragToMonth:(NSDateComponents*)month;
+- (BOOL)calendarView:(DSLCalendarView *)calendarView eventsExistOnDay:(NSDateComponents *)day;
 
 @end

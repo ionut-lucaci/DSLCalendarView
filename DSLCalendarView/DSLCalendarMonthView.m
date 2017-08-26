@@ -105,6 +105,14 @@
                 dayFrame.size.height = _dayViewHeight;
                 
                 DSLCalendarDayView *dayView = [[_dayViewClass alloc] initWithFrame:dayFrame];
+                
+                dayView.hasAvailableEvents = YES;
+                if ([self.delegate respondsToSelector:@selector(eventsExistOnDay:)]) {
+                    dayView.hasAvailableEvents = [self.delegate eventsExistOnDay:day];
+                }
+                
+                
+                
                 dayView.day = day;
                 switch (column) {
                     case 0:

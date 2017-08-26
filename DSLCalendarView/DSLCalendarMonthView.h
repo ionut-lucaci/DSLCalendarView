@@ -34,11 +34,18 @@
 @class DSLCalendarDayView;
 @class DSLCalendarRange;
 
+@protocol DSLCalendarMonthViewDelegate <NSObject>
+
+- (BOOL)eventsExistOnDay:(NSDateComponents *)date;
+
+@end
+
 
 @interface DSLCalendarMonthView : UIView
 
 @property (nonatomic, copy, readonly) NSDateComponents *month;
 @property (nonatomic, strong, readonly) NSSet *dayViews;
+@protocol (nonatomic, assign) id<DSLCalendarMonthViewDelegate> delegate;
 
 // Designated initialiser
 - (id)initWithMonth:(NSDateComponents*)month width:(CGFloat)width dayViewClass:(Class)dayViewClass dayViewHeight:(CGFloat)dayViewHeight;
@@ -47,4 +54,6 @@
 - (void)updateDaySelectionStatesForRange:(DSLCalendarRange*)range;
 
 @end
+
+
 
