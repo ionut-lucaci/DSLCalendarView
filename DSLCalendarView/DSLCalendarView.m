@@ -38,7 +38,7 @@
 #import "DSLCalendarDayView.h"
 
 
-@interface DSLCalendarView <DSLCalendarMonthViewDelegate>()
+@interface DSLCalendarView () <DSLCalendarMonthViewDelegate>
 
 @property (nonatomic, strong) DSLCalendarDayCalloutView *dayCalloutView;
 @property (nonatomic, copy) NSDateComponents *draggingFixedDay;
@@ -211,7 +211,7 @@
         [monthView updateDaySelectionStatesForRange:self.selectedRange];
     }
     
-    monthView.delegate = self
+    monthView.delegate = self;
     
     return monthView;
 }
@@ -532,7 +532,7 @@
 
 - (BOOL)eventsExistOnDay:(NSDateComponents *)day {
     if ([self.delegate respondsToSelector:@selector(calendarView:eventsExistOnDay:)]) {
-        return [self.delegate calendarView:self eventsExistOnDay:day]
+        return [self.delegate calendarView:self eventsExistOnDay:day];
     }
     
     return YES;
