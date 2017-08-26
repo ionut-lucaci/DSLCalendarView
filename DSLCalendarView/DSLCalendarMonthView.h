@@ -45,7 +45,7 @@
 
 @property (nonatomic, copy, readonly) NSDateComponents *month;
 @property (nonatomic, strong, readonly) NSSet *dayViews;
-@protocol (nonatomic, assign) id<DSLCalendarMonthViewDelegate> delegate;
+@property (nonatomic, assign) id<DSLCalendarMonthViewDelegate> delegate;
 
 // Designated initialiser
 - (id)initWithMonth:(NSDateComponents*)month width:(CGFloat)width dayViewClass:(Class)dayViewClass dayViewHeight:(CGFloat)dayViewHeight;
