@@ -203,15 +203,15 @@
 
     NSString *monthViewKey = [self monthViewKeyForMonth:month];
     DSLCalendarMonthView *monthView = [self.monthViews objectForKey:monthViewKey];
+    monthView.delegate = self;
     if (monthView == nil) {
         monthView = [[[[self class] monthViewClass] alloc] initWithMonth:month width:self.bounds.size.width dayViewClass:[[self class] dayViewClass] dayViewHeight:_dayViewHeight];
+        monthView.delegate = self;
         [self.monthViews setObject:monthView forKey:monthViewKey];
         [self.monthContainerViewContentView addSubview:monthView];
 
         [monthView updateDaySelectionStatesForRange:self.selectedRange];
     }
-    
-    monthView.delegate = self;
     
     return monthView;
 }
