@@ -203,17 +203,25 @@
     NSString *monthViewKey = [self monthViewKeyForMonth:month];
     DSLCalendarMonthView *monthView = [self.monthViews objectForKey:monthViewKey];
     
+    BOOL wasJustCreated = NO;
+    BOOL isVisibleMonth = (month.year == self.visibleMonth.year && month.month == self.visibleMonth.month);
     
     if (monthView == nil) {
+        wasJustCreated = YES;
+        
         monthView = [[[[self class] monthViewClass] alloc] initWithMonth:month width:self.bounds.size.width dayViewClass:[[self class] dayViewClass] dayViewHeight:_dayViewHeight];
+        
         [self.monthViews setObject:monthView forKey:monthViewKey];
         [self.monthContainerViewContentView addSubview:monthView];
 
-        [monthView updateDaySelectionStatesForRange:self.selectedRange];
     }
     
     monthView.delegate = self;
-    [monthView createDayViews];
+    
+    if (wasJustCreated || isVisibleMonth)  {
+        [monthView createDayViews];
+        [monthView updateDaySelectionStatesForRange:self.selectedRange];
+    }
     
     return monthView;
 }
@@ -537,14 +545,6 @@
 }
 
 - (BOOL)eventsExistOnDay:(NSDateComponents *)day {
-    if (self.visibleMonth.year != day.year) {
-        return NO;
-    }
-    
-    if (self.visibleMonth.month != day.month) {
-        return NO;
-    }
-    
     if ([self.delegate respondsToSelector:@selector(calendarView:eventsExistOnDay:)]) {
         return [self.delegate calendarView:self eventsExistOnDay:day];
     }
