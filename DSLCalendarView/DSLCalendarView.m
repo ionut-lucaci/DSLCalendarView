@@ -537,6 +537,14 @@
 }
 
 - (BOOL)eventsExistOnDay:(NSDateComponents *)day {
+    if (self.visibleMonth.year != day.year) {
+        return NO;
+    }
+    
+    if (self.visibleMonth.month != day.month) {
+        return NO;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(calendarView:eventsExistOnDay:)]) {
         return [self.delegate calendarView:self eventsExistOnDay:day];
     }
